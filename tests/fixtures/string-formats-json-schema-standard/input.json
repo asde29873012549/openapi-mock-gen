@@ -1,0 +1,96 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "String Formats Test API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Get user with standard formats",
+        "operationId": "getUser",
+        "responses": {
+          "200": {
+            "description": "User with various string formats",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "idnEmail": {
+            "type": "string",
+            "format": "idn-email"
+          },
+          "website": {
+            "type": "string",
+            "format": "uri"
+          },
+          "iri": {
+            "type": "string",
+            "format": "iri"
+          },
+          "uriReference": {
+            "type": "string",
+            "format": "uri-reference"
+          },
+          "iriReference": {
+            "type": "string",
+            "format": "iri-reference"
+          },
+          "uriTemplate": {
+            "type": "string",
+            "format": "uri-template"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "birthDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "loginTime": {
+            "type": "string",
+            "format": "time"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "hostname": {
+            "type": "string",
+            "format": "hostname"
+          },
+          "idnHostname": {
+            "type": "string",
+            "format": "idn-hostname"
+          },
+          "ipv4": {
+            "type": "string",
+            "format": "ipv4"
+          },
+          "ipv6": {
+            "type": "string",
+            "format": "ipv6"
+          }
+        }
+      }
+    }
+  }
+}

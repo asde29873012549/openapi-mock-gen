@@ -1,0 +1,3 @@
+module.exports = {
+  useExample: true,
+};

@@ -1,0 +1,128 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "String Heuristic Patterns Test API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/profile": {
+      "get": {
+        "summary": "Get profile with heuristic string patterns",
+        "responses": {
+          "200": {
+            "description": "Profile with heuristic string patterns",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profile"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Profile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "auth_token": {
+            "type": "string"
+          },
+          "refresh_token": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "street_address": {
+            "type": "string"
+          },
+          "city_name": {
+            "type": "string"
+          },
+          "state_code": {
+            "type": "string"
+          },
+          "zip_code": {
+            "type": "string"
+          },
+          "country_name": {
+            "type": "string"
+          },
+          "postal_code": {
+            "type": "string"
+          },
+          "latitude_coord": {
+            "type": "string"
+          },
+          "longitude_coord": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "mobile_phone": {
+            "type": "string"
+          },
+          "email_address": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "redirect_url": {
+            "type": "string"
+          },
+          "homepage_uri": {
+            "type": "string"
+          },
+          "profile_photo": {
+            "type": "string"
+          },
+          "profile_image": {
+            "type": "string"
+          },
+          "profile_picture": {
+            "type": "string"
+          },
+          "avatar_img": {
+            "type": "string"
+          },
+          "banner_image": {
+            "type": "string"
+          },
+          "page_title": {
+            "type": "string"
+          },
+          "bio_description": {
+            "type": "string"
+          },
+          "about_content": {
+            "type": "string"
+          },
+          "intro_text": {
+            "type": "string"
+          },
+          "bio_paragraph": {
+            "type": "string"
+          },
+          "latest_comment": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

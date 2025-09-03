@@ -1,0 +1,128 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Faker Map Custom Generation Test API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/custom": {
+      "get": {
+        "summary": "Test custom faker map generation",
+        "responses": {
+          "200": {
+            "description": "Custom generation with faker map",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomData"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CustomData": {
+        "type": "object",
+        "properties": {
+          "noOverride": {
+            "type": "string",
+            "description": "Should use faker.lorem.words()"
+          },
+          "overrideType": {
+            "type": "string",
+            "description": "Should not use faker.lorem.words()"
+          },
+          "overrideFormat": {
+            "type": "string",
+            "format": "email",
+            "description": "Should not use faker.internet.email()"
+          },
+          "overrideHeuristic_street": {
+            "type": "string",
+            "description": "Should not use faker.location.streetAddress()"
+          },
+          "overrideExample": {
+            "type": "string",
+            "example": "Example",
+            "description": "Should not use Example"
+          },
+          "overrideWithFaker": {
+            "type": "string",
+            "description": "Should not use faker.lorem.words()"
+          },
+          "overrideWithFakerString": {
+            "type": "string",
+            "description": "Should not use faker.lorem.words()"
+          },
+          "overrideWithFunction": {
+            "type": "string",
+            "description": "Should not use faker.lorem.words()"
+          },
+          "overrideWithComplexFunction": {
+            "type": "string",
+            "description": "Should not use faker.lorem.words()"
+          },
+          "overrideWithRegex": {
+            "type": "object",
+            "properties": {
+              "user_age": {
+                "type": "integer",
+                "description": "Should not use faker.number.int({ min: 20, max: 80, multipleOf: 1 })"
+              },
+              "user_height": {
+                "type": "integer",
+                "description": "Should not use faker.number.int({ min: 1, max: 1000, multipleOf: 1 })"
+              },
+              "get_user_name": {
+                "type": "string",
+                "description": "Should not use faker.person.fullName()"
+              },
+              "fallback_field": {
+                "type": "string",
+                "description": "Should use faker.lorem.words()"
+              }
+            }
+          },
+          "arrayOfCustom": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "overrideType": {
+                  "type": "string",
+                  "description": "Should not use faker.lorem.words()"
+                },
+                "fallback_field": {
+                  "type": "string",
+                  "description": "Should use faker.lorem.words()"
+                }
+              }
+            }
+          },
+          "nestedCustom": {
+            "type": "object",
+            "properties": {
+              "fallback_field": {
+                "type": "string",
+                "description": "Should use faker.lorem.words()"
+              },
+              "inner": {
+                "type": "object",
+                "properties": {
+                  "get_user_name": {
+                    "type": "string",
+                    "description": "Should not use faker.person.fullName()"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

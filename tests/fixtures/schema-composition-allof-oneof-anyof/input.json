@@ -1,0 +1,259 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Schema Composition Test API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/entities": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Flexible data processed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FlexibleData"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Entity created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompositeEntity"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Variant data retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VariantData"
+                }
+              }
+            }
+          },
+          "203": {
+            "description": "Nested composition updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NestedComposition"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Complex composition data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComplexComposition"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BaseEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Metadata": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "integer"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CompositeEntity": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEntity"
+          },
+          {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["primary", "secondary", "tertiary"]
+              }
+            }
+          }
+        ]
+      },
+      "FlexibleData": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "stringValue": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["string", "number", "array"]
+              }
+            },
+            "required": ["stringValue", "type"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "numberValue": {
+                "type": "number"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["number"]
+              }
+            },
+            "required": ["numberValue", "type"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "arrayValue": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "type": {
+                "type": "string",
+                "enum": ["array"]
+              }
+            },
+            "required": ["arrayValue", "type"]
+          }
+        ]
+      },
+      "VariantData": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "format": "email"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string",
+                "pattern": "^\\+?[1-9]\\d{1,14}$"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "object",
+                "properties": {
+                  "street": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "zip_code": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "NestedComposition": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEntity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/FlexibleData"
+                  },
+                  {
+                    "$ref": "#/components/schemas/VariantData"
+                  }
+                ]
+              },
+              "additional": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "ComplexComposition": {
+        "type": "object",
+        "properties": {
+          "entity": {
+            "$ref": "#/components/schemas/CompositeEntity"
+          },
+          "flexible": {
+            "$ref": "#/components/schemas/FlexibleData"
+          },
+          "variant": {
+            "$ref": "#/components/schemas/VariantData"
+          },
+          "nested": {
+            "$ref": "#/components/schemas/NestedComposition"
+          }
+        }
+      }
+    }
+  }
+}

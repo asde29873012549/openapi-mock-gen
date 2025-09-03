@@ -1,0 +1,111 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Number Constraints and Heuristics Test API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/analytics": {
+      "get": {
+        "summary": "Get analytics with various number patterns",
+        "responses": {
+          "200": {
+            "description": "Analytics with number constraints and heuristics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Analytics"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Analytics": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "report_id": {
+            "type": "integer"
+          },
+          "user_age": {
+            "type": "integer"
+          },
+          "birth_year": {
+            "type": "integer"
+          },
+          "birth_month": {
+            "type": "integer"
+          },
+          "birth_day": {
+            "type": "integer"
+          },
+          "view_count": {
+            "type": "integer"
+          },
+          "item_quantity": {
+            "type": "integer"
+          },
+          "total_amount": {
+            "type": "number"
+          },
+          "file_size": {
+            "type": "integer"
+          },
+          "word_length": {
+            "type": "integer"
+          },
+          "screen_width": {
+            "type": "integer"
+          },
+          "screen_height": {
+            "type": "integer"
+          },
+          "body_weight": {
+            "type": "number"
+          },
+          "product_price": {
+            "type": "number"
+          },
+          "discount": {
+            "type": "number"
+          },
+          "tax_fee": {
+            "type": "number"
+          },
+          "service_fee": {
+            "type": "number"
+          },
+          "user_rating": {
+            "type": "number"
+          },
+          "review_stars": {
+            "type": "integer"
+          },
+          "constrainedNumber": {
+            "type": "number",
+            "minimum": 50,
+            "maximum": 100,
+            "multipleOf": 5
+          },
+          "exclusiveMinNumber": {
+            "type": "integer",
+            "exclusiveMinimum": 10,
+            "exclusiveMaximum": 20
+          },
+          "largeRangeInteger": {
+            "type": "integer",
+            "minimum": 1000000,
+            "maximum": 9999999
+          }
+        }
+      }
+    }
+  }
+}

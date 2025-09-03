@@ -1,0 +1,164 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Undefined Type Inference Test API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/inference": {
+      "post": {
+        "summary": "Test undefined type inference",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InferenceData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Type inference successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InferenceData"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "InferenceData": {
+        "type": "object",
+        "properties": {
+          "objectWithPropertiesNoType": {
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "age": {
+                "type": "integer"
+              }
+            }
+          },
+          "objectWithAdditionalPropertiesNoType": {
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "arrayWithItemsNoType": {
+            "items": {
+              "type": "string"
+            }
+          },
+          "nestedInferenceObject": {
+            "properties": {
+              "level1": {
+                "properties": {
+                  "level2": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "complexInferenceObject": {
+            "properties": {
+              "objectProp": {
+                "properties": {
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "arrayProp": {
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "normalProp": {
+                "type": "boolean"
+              }
+            }
+          },
+          "arrayOfObjectsNoType": {
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "nested": {
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "mixedInferenceTypes": {
+            "properties": {
+              "shouldBeObject": {
+                "properties": {
+                  "prop": {
+                    "type": "string"
+                  }
+                }
+              },
+              "shouldBeArray": {
+                "items": {
+                  "type": "number"
+                }
+              },
+              "shouldBeString": {
+                "minLength": 5,
+                "maxLength": 10
+              },
+              "shouldBeNumber": {
+                "minimum": 1,
+                "maximum": 100
+              },
+              "onlyDescription": {
+                "description": "No type hints, should default to string"
+              }
+            }
+          },
+          "deepNestedInference": {
+            "properties": {
+              "level1": {
+                "additionalProperties": {
+                  "items": {
+                    "properties": {
+                      "deepProp": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "emptySchemaObject": {},
+          "onlyDescriptionProperty": {
+            "description": "This has only a description"
+          },
+          "withFormat": {
+            "format": "email"
+          },
+          "withPattern": {
+            "pattern": "^[A-Z]{3}$"
+          },
+          "withEnum": {
+            "enum": ["value1", "value2", "value3"]
+          }
+        }
+      }
+    }
+  }
+}

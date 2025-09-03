@@ -1,0 +1,126 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Object Handling Test API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/objects": {
+      "post": {
+        "summary": "Test object handling",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ObjectTests"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Object handling tests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectTests"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ObjectTests": {
+        "type": "object",
+        "properties": {
+          "simpleObject": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "integer"
+              }
+            }
+          },
+          "emptyObject": {
+            "type": "object"
+          },
+          "objectWithAdditionalProperties": {
+            "type": "object",
+            "properties": {
+              "fixedProperty": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "objectWithTypedAdditionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          },
+          "objectWithBooleanAdditionalProperties": {
+            "type": "object",
+            "properties": {
+              "baseProperty": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          },
+          "objectWithNoAdditionalProperties": {
+            "type": "object",
+            "properties": {
+              "strictProperty": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "nestedObjectStructure": {
+            "type": "object",
+            "properties": {
+              "level1": {
+                "type": "object",
+                "properties": {
+                  "level2": {
+                    "type": "object",
+                    "properties": {
+                      "level3": {
+                        "type": "object",
+                        "properties": {
+                          "deepProperty": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

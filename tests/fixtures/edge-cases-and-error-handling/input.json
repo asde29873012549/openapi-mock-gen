@@ -1,0 +1,176 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Edge Cases and Error Handling Test API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/edge-cases": {
+      "get": {
+        "summary": "Test edge cases and error handling",
+        "responses": {
+          "200": {
+            "description": "Edge cases response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgeCases"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EdgeCases": {
+        "type": "object",
+        "properties": {
+          "invalidPatternString": {
+            "type": "string",
+            "pattern": "[unclosed-bracket"
+          },
+          "emptyString": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 0
+          },
+          "noTypeSpecified": {
+            "description": "Property without type"
+          },
+          "nullableString": {
+            "type": "string",
+            "nullable": true
+          },
+          "arrayWithoutItems": {
+            "type": "array"
+          },
+          "objectWithoutProperties": {
+            "type": "object"
+          },
+          "nestedRefLoop": {
+            "$ref": "#/components/schemas/SelfReference"
+          },
+          "undefinedType": {
+            "type": "unknownType"
+          },
+          "extremelyLargeMinimum": {
+            "type": "integer",
+            "minimum": 999999999999999
+          },
+          "negativeMaximum": {
+            "type": "integer",
+            "maximum": -1000
+          },
+          "invalidMultipleOf": {
+            "type": "number",
+            "multipleOf": 0
+          },
+          "conflictingConstraints": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 5
+          },
+          "wrongTypeWithCorrectExample": {
+            "type": "object",
+            "example": 123
+          },
+          "arrayWithWrongTypeWithCorrectExample": {
+            "type": "array",
+            "example": [123, 456]
+          },
+          "emptyEnum": {
+            "type": "string",
+            "enum": []
+          },
+          "arrayWithEmptyEnum": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": []
+            }
+          },
+          "complexInvalidPattern": {
+            "type": "string",
+            "pattern": "(?<=invalid)lookahead"
+          },
+          "mixedValidInvalidData": {
+            "type": "object",
+            "properties": {
+              "validEmail": {
+                "type": "string",
+                "format": "email"
+              },
+              "invalidPattern": {
+                "type": "string",
+                "pattern": "*invalid*"
+              },
+              "validEnum": {
+                "type": "string",
+                "enum": ["valid1", "valid2"]
+              },
+              "emptyEnum": {
+                "type": "string",
+                "enum": []
+              }
+            }
+          },
+          "veryLongPropertyNameThatExceedsNormalLimitsAndMightCauseIssuesInProcessing": {
+            "type": "string"
+          },
+          "specialCharacters": {
+            "type": "object",
+            "properties": {
+              "@special": {
+                "type": "string"
+              },
+              "property-with-dashes": {
+                "type": "string"
+              },
+              "property_with_underscores": {
+                "type": "string"
+              },
+              "property.with.dots": {
+                "type": "string"
+              },
+              "property with spaces": {
+                "type": "string"
+              },
+              "property$with$dollars": {
+                "type": "string"
+              }
+            }
+          },
+          "unicodeProperties": {
+            "type": "object",
+            "properties": {
+              "名前": {
+                "type": "string"
+              },
+              "电子邮件": {
+                "type": "string",
+                "format": "email"
+              },
+              "🚀": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "SelfReference": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "child": {
+            "$ref": "#/components/schemas/SelfReference"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Endpoint FakerMap Override Test API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/user-profile": {
+      "get": {
+        "summary": "Test endpoint-level fakerMap override",
+        "operationId": "getUserProfileWithOverride",
+        "responses": {
+          "200": {
+            "description": "User profile data using merged fakerMap",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfile"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserProfile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123"
+          },
+          "username": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john.doe@example.com"
+          },
+          "role": {
+            "type": "string",
+            "example": "admin"
+          },
+          "arrayOfStrings": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "item1"
+            }
+          },
+          "nestedObject": {
+            "type": "object",
+            "properties": {
+              "user_string": {
+                "type": "string",
+                "example": "John Doe"
+              },
+              "guest_object": {
+                "type": "object",
+                "properties": {
+                  "random": {
+                    "type": "string",
+                    "example": "Jane Doe"
+                  }
+                }
+              },
+              "user_array": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": "item1"
+                }
+              },
+              "guest_array": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": "item2"
+                }
+              }
+            }
+          }
+        },
+        "required": ["id", "username", "email", "role"]
+      }
+    }
+  }
+} 

@@ -1,0 +1,180 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Example Usage Priority Test API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/samples": {
+      "get": {
+        "summary": "Get samples with examples",
+        "responses": {
+          "200": {
+            "description": "Samples with various example types",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SampleData"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SampleData": {
+        "type": "object",
+        "properties": {
+          "stringWithExample": {
+            "type": "string",
+            "example": "This is an example string"
+          },
+          "numberWithExample": {
+            "type": "integer",
+            "example": 42
+          },
+          "booleanWithExample": {
+            "type": "boolean",
+            "example": true
+          },
+          "enumWithExample": {
+            "type": "string",
+            "enum": ["value1", "value2", "value3"],
+            "example": "value2"
+          },
+          "objectWithExample": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "age": {
+                "type": "integer"
+              }
+            },
+            "example": {
+              "name": "John Doe",
+              "age": 30
+            }
+          },
+          "arrayWithExample": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["item1", "item2", "item3"]
+          },
+          "nestedObjectWithExamples": {
+            "type": "object",
+            "properties": {
+              "parent": {
+                "type": "object",
+                "properties": {
+                  "child": {
+                    "type": "string",
+                    "example": "nested example"
+                  },
+                  "count": {
+                    "type": "integer",
+                    "example": 5
+                  }
+                },
+                "example": {
+                  "child": "parent level example",
+                  "count": 10
+                }
+              }
+            }
+          },
+          "arrayOfObjectsWithExamples": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": 123
+                },
+                "status": {
+                  "type": "string",
+                  "enum": ["active", "inactive"],
+                  "example": "active"
+                }
+              },
+              "example": {
+                "id": 999,
+                "status": "inactive"
+              }
+            },
+            "example": [
+              { "id": 1, "status": "active" },
+              { "id": 2, "status": "inactive" }
+            ]
+          },
+          "complexExample": {
+            "type": "object",
+            "properties": {
+              "metadata": {
+                "type": "object",
+                "properties": {
+                  "version": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "data": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "example": {
+              "metadata": {
+                "version": "1.0.0",
+                "tags": ["production", "stable"]
+              },
+              "data": {
+                "value": "complex example data"
+              }
+            }
+          },
+          "nullExample": {
+            "type": "string",
+            "example": null
+          },
+          "emptyStringExample": {
+            "type": "string",
+            "example": ""
+          },
+          "zeroNumberExample": {
+            "type": "integer",
+            "example": 0
+          },
+          "falseBooleanExample": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      }
+    }
+  }
+} 

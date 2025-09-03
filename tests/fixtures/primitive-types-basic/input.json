@@ -1,0 +1,106 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Primitive Types Basic Test API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/primitives": {
+      "get": {
+        "summary": "Test basic primitive types",
+        "responses": {
+          "200": {
+            "description": "Basic primitive types",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrimitiveTypes"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PrimitiveTypes": {
+        "type": "object",
+        "properties": {
+          "basicString": {
+            "type": "string"
+          },
+          "basicInteger": {
+            "type": "integer"
+          },
+          "basicNumber": {
+            "type": "number"
+          },
+          "basicBoolean": {
+            "type": "boolean"
+          },
+          "stringWithoutFormat": {
+            "type": "string",
+            "description": "Plain string without any format"
+          },
+          "integerWithoutConstraints": {
+            "type": "integer",
+            "description": "Plain integer without constraints"
+          },
+          "numberWithoutConstraints": {
+            "type": "number",
+            "description": "Plain number without constraints"
+          },
+          "arrayOfStrings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "arrayOfIntegers": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "arrayOfNumbers": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "arrayOfBooleans": {
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            }
+          },
+          "simpleObject": {
+            "type": "object",
+            "properties": {
+              "prop1": {
+                "type": "string"
+              },
+              "prop2": {
+                "type": "integer"
+              },
+              "prop3": {
+                "type": "boolean"
+              }
+            }
+          },
+          "nullValue": {
+            "type": "null"
+          },
+          "mixedSimpleArray": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+} 
