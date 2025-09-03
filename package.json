@@ -1,6 +1,6 @@
 {
   "name": "openapi-mock-gen",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0",
   "description": "Generate mock definitions with random fake data based on OpenAPI spec.",
   "keywords": [
     "openapi",
